@@ -1,8 +1,8 @@
 #!/bin/env bash
 # Loops from one to 10
-#	Prints "bad luck" on 4th iter
-#	Prints "good luck" on 8th iter
-#	Prints "Best School otherwise"
+# Prints "bad luck" on 4th iter
+# Prints "good luck" on 8th iter
+# Prints "Best School otherwise"
 
 count=1
 
