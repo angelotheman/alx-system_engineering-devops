@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Displays content in a list directory
+
+for file in *; do
+	echo "$file" | cut -d "-" -f 2
+done
