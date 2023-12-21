@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # Loops from one to 10
 # Prints "bad luck" on 4th iter
 # Prints "good luck" on 8th iter
