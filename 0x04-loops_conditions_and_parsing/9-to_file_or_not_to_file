@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Bash script should check if the file exists and print:
+# if the file exists: school file exists
+# Then Print:
+# 	if the file is empty: school file is empty
+# 	if the file is not empty: school file is not empty
+# 	if the file is a regular file: school is a regular file
+#	if the file is not a regular file: (nothing)
+# if the file does not exist: school file does not exist
+
+file="school"
+
+if [ -e "$file" ]; then
+
+	if [ -s "$file" ]; then
+		echo "$file file is empty"
+	else
+		echo "$file file is not empty"
+	fi
+
+	if [ -f "$file" ]; then
+		echo "$file is a regular file"
+	fi
+fi
