@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Script to display contents of a file
+# username
+# userId
+# Home directory path for the user
+
+
+file="/etc/passwd"
+
+while read -r LINE; do
+	echo "$LINE" | cut -d ':' -f1,3,6
+done < $file
