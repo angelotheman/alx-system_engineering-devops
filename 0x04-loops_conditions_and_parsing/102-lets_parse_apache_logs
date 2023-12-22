@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Format HTTP Code and Print
+# IP Address
+# Status code
+
+LOG_FILE="apache-access.log"
+
+awk '{print $1, $9}' "$LOG_FILE"
