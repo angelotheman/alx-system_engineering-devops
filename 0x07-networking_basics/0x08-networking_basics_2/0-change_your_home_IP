@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script does the following
+# - localhost resolves to 127.0.0.2
+# - facebook.com resolves to 8.8.8.8
+
+file="/etc/hosts"
+
+# Check if file exists
+if [ ! -f "$file" ]; then
+	echo "Error: '$file' not found"
+	exit 1
+fi
+
+# Add entry to the file
+echo "127.0.0.2		localhost" >> "$file"
+echo "8.8.8.8	facebook.com" >> "$file"
