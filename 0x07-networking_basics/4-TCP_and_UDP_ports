@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Printing only listening port of TCP and UDP
+
+netstat -lp
