@@ -9,7 +9,9 @@ In this directory, I learn most of networking concepts.
 - Ping
 - Positional Parameters
 
-#### Positional Parameters
+### Positional Parameters
+Here's is a table representing the various positional argument and their functions
+
 <table>
 <tr>
 <th>Argument</th>
