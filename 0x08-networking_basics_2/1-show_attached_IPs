@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This scripts shows the active IPv4 addresses that are available
+
+ifconfig | grep "inet\s" | awk '{print $2}'
