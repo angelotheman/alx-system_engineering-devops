@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Listening on ports
+
+# Defining the port number
+port=98
+
+# Listening on specified port
+nc -lp "$port"
