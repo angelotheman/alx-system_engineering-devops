@@ -2,5 +2,5 @@
 # This is a client configuration file
 
 Host 54.237.9.122
-	IdentifyFile ~/.ssh/school
+	IdentityFile ~/.ssh/school
 	PasswordAuthentication no
