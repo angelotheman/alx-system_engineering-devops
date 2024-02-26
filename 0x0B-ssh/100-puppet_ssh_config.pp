@@ -1,16 +1,6 @@
 # Configuration with puppet
 
-$ssh_config_content = "
-    # SSH client Configuration
-    Host 54.237.9.122
-        IdentityFile ~/.ssh/school
-	PasswordAuthentication no
-"
-
-file {"etc/ssh/ssh_config":
-  ensure  => present,
-  content => $ssh_config_content,
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
+exec {'Puppet Configuration':
+  path    => '/usr/bin:/bin',
+  command => 'echo -e "Host 54.237.9.122\n	IdentityFile ~/.ssh/school\n	PasswordAuthentication no" >> /etc/ssh/ssh_config',
 }
