@@ -7,7 +7,10 @@ $ssh_config_content = "
 	PasswordAuthentication no
 "
 
-file {'etc/ssh/ssh_config':
+file {"etc/ssh/ssh_config":
   ensure  => present,
   content => $ssh_config_content,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
 }
