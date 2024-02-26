@@ -1,3 +1,5 @@
+# This resource creates the file /tmp/school
+
 file {'/tmp/school':
   ensure  => 'present',
   mode    => '0744',
