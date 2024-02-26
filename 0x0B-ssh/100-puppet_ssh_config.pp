@@ -3,7 +3,7 @@
 $ssh_config_content = "
     # SSH client Configuration
     Host 54.237.9.122
-        IdentifyFile ~/.ssh/school
+        IdentityFile ~/.ssh/school
 	PasswordAuthentication no
 "
 
