@@ -3,4 +3,3 @@
 exec {'Kill the current process':
   command => 'pkill killmenow'
 }
-
