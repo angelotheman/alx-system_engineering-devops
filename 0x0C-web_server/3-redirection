@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Nginx redirection
+
+sudo apt-get update -y
+
+sudo apt-get install -y nginx
+
+sudo tee /etc/nginx/sites-available/default >/dev/null <<EOF
+server {
+	listen 80;
+	listen [::]:80;
+	server_name 54.237.9.122;
+
+	location /redirect_me {
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
+
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+}
+EOF
+
+sudo service nginx restart
