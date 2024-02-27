@@ -2,7 +2,8 @@
 # Transfer file from client to server
 
 if [ "$#" -lt 4 ]; then
-	echo "Usage: $0 PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY "
+	echo "Usage: $0 PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+	exit 1
 fi
 
 SSH_OPTIONS="-o StrictHostKeyChecking=no"
