@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Install nginx on my webserver
 
-apt-get update -y
-apt-get install -y nginx
+sudo apt-get update -y
+sudo apt-get install -y nginx
 
-echo 'Hello World!' | sudo  tee /var/www/html/index.html
+echo 'Hello World!' | sudo  tee /var/www/html/index.html >/dev/null
 
-service nginx restart
+sudo service nginx restart
