@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Nginx redirection
+
+sudo apt-get update -y
+
+sudo apt-get install -y nginx
+
+sudo tee /etc/nginx/sites-available/default >/dev/null <<EOF
+server {
+	listen 80;
+	listen [::]:80;
+	server_name 54.237.9.122;
+
+	error_page 404 /404.html;
+	location = /404.html {
+		root /var/www/html;
+		internal;
+	}
+
+	location / {
+		return 404 "Ceci n'est pas une page";
+	}
+
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+}
+EOF
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html >/dev/null
+
+sudo service nginx restart
