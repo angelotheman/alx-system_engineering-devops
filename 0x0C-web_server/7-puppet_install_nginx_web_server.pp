@@ -47,5 +47,6 @@ service { 'nginx':
 # Execute command to restart Nginx
 exec { 'nginx_restart':
 	command => 'service nginx restart',
+	path => '/usr/sbin:/usr/bin:/sbin:/bin',
 	refreshonly => true,
 }
