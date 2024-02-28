@@ -27,7 +27,7 @@ file { '/etc/nginx/sites-available/default':
 		}
 	}
   ",
-  notify   => Service['nginx'],
+	  notify => Exec['nginx_restart'],
 }
 
 # Enable the default site
@@ -35,7 +35,6 @@ file { '/etc/nginx/sites-enabled/default':
   ensure  => link,
   target  => '/etc/nginx/sites-available/default',
   require => File['/etc/nginx/sites-available/default'],
-  notify  => Service['nginx'],
 }
 
 # Ensure Nginx server is always running or restart
@@ -43,5 +42,10 @@ service { 'nginx':
   ensure  => running,
   enable  => true,
   require => Package['nginx'],
-  notify  => Service['nginx'],
+}
+
+# Execute command to restart Nginx
+exec { 'nginx_restart':
+	command => 'service nginx restart',
+	refreshonly => true,
 }
