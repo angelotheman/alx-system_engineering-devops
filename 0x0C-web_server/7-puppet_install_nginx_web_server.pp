@@ -16,7 +16,7 @@ file { '/etc/nginx/sites-available/default':
 		server_name 54.237.9.122;
 
 		root /var/www/html;
-		index index.html index.htm index.nginx-debian.html
+		index index.html index.htm index.nginx-debian.html;
 
 		location / {
 			return 200 'Hello World!';
@@ -27,7 +27,7 @@ file { '/etc/nginx/sites-available/default':
 		}
 	}
   ",
-	  notify => Exec['nginx_restart'],
+    notify => Exec['nginx_restart'],
 }
 
 # Enable the default site
@@ -46,7 +46,7 @@ service { 'nginx':
 
 # Execute command to restart Nginx
 exec { 'nginx_restart':
-	command => 'service nginx restart',
-	path => '/usr/sbin:/usr/bin:/sbin:/bin',
-	refreshonly => true,
+  command     => 'service nginx restart',
+  path        => '/usr/sbin:/usr/bin:/sbin:/bin',
+  refreshonly => true,
 }
