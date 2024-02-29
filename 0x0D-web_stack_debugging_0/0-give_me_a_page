@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Fixing a page connecting to the internet
 
-docker exec -it 47ca3994a491 service apache2 restart 
+service apache2 restart 
