@@ -1,14 +1,8 @@
 # Puppet manifestations to configure Nginx with custom HTTP response header
 
-# Update package
-package {'update':
-  ensure => latest,
-}
-
 # Install Nginx
 package {'nginx':
   ensure  => installed,
-  require => Package['update'],
 }
 
 # Create index.html file
