@@ -16,7 +16,6 @@ sudo tee /etc/nginx/sites-available/default >/dev/null <<EOF
 server {
 	listen 80;
 	listen [::]:80;
-	server_name 34.239.248.133;
 	add_header X-Served-By $HOSTNAME;
 
 	root /var/www/html;
