@@ -47,4 +47,12 @@ file {'/etc/nginx/sites-available/default':
 service {'nginx':
   ensure => running,
   enable => true,
+  require => Package['nginx'],
+}
+
+# Execute command to restart Nginx
+exec { 'nginx_restart':
+  command     => 'service nginx restart',
+  path        => '/usr/sbin:/usr/bin:/sbin:/bin',
+  refreshonly => true,
 }
