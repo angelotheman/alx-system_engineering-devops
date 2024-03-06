@@ -39,8 +39,7 @@ file {'/etc/nginx/sites-available/default':
             internal;
           }
         }",
-  require => Package['nginx'],
-  notify  => Service['nginx'],
+  notify  => Exec['nginx_restart'],
 }
 
 # Define the Nginx Service
