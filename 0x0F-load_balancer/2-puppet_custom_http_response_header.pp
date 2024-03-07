@@ -24,7 +24,7 @@ file {'/etc/nginx/sites-available/default':
         server {
           listen 80;
           listen [::]:80;
-          add_header X-Served-By $::hostname;
+          add_header X-Served-By $::fdqn;
 
           root /var/www/html;
           index index.html index.htm index.nginx-debian.html;
@@ -39,7 +39,7 @@ file {'/etc/nginx/sites-available/default':
             internal;
           }
         }",
-  notify  => Exec['nginx_restart'],
+  notify  => Service['nginx'],
 }
 
 # Define the Nginx Service
@@ -47,11 +47,4 @@ service {'nginx':
   ensure => running,
   enable => true,
   require => Package['nginx'],
-}
-
-# Execute command to restart Nginx
-exec { 'nginx_restart':
-  command     => 'service nginx restart',
-  path        => '/usr/sbin:/usr/bin:/sbin:/bin',
-  refreshonly => true,
 }
