@@ -24,7 +24,7 @@ file {'/etc/nginx/sites-available/default':
         server {
           listen 80;
           listen [::]:80;
-          add_header X-Served-By $::fdqn;
+          add_header X-Served-By $::fqdn;
 
           root /var/www/html;
           index index.html index.htm index.nginx-debian.html;
