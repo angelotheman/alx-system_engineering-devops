@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Fixing Nginx not listening on port 80
 
-sed -i 's/listen\s*80;/listen 80;/g' /etc/nginx/nginx.conf
-
-service nginx restart
+# Check if the 'listen 80;' directive exists in the nginx.conf file
+if grep -q 'listen 80;' /etc/nginx/nginx.conf; then
+	exit 1
+else
+    echo "listen 80;" | sudo tee -a /etc/nginx/nginx.conf > /dev/null
+    sudo nginx -t && sudo service nginx restart
+fi
