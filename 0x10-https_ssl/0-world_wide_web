@@ -1,23 +1,39 @@
 #!/usr/bin/env bash
 # Configure domains to point to webservers
 
-
-query_dns () {
-	local domain="$1"
-	local subdomain="$2"
-
-	if [ -z "$subdomain" ];then
-		subdomains=("www" "lb-01" "web-01" "web-02")
-	else
-		subdomains=("$subdomain")
-	fi
-
-	for sub in "${subdomains[@]}"; do
-		echo "The subdomain [$sub] is a $(dig +short -t CNAME "$sub.$subdomain" | awk '{print toupper($1)}') record and points to $(dig +short "$sub.$domain")"
-	done
+# Function to display information about a subdomain
+display_info() {
+    local subdomain="$1"
+    local record_type="$2"
+    local destination="$3"
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
 }
 
-domain="$1"
-subdomain="$2"
+# Main function
+main() {
+    local domain="$1"
+    local subdomain="$2"
 
-query_dns "$domain" "$subdomain"
+    # Default subdomains to check
+    local subdomains=("www" "lb-01" "web-01" "web-02")
+
+    # If subdomain provided, only check that subdomain
+    if [ -n "$subdomain" ]; then
+        subdomains=("$subdomain")
+    fi
+
+    # Loop through subdomains and display information
+    for sub in "${subdomains[@]}"; do
+        info=$(dig +short "$sub.$domain" | head -n1)
+        if [ -n "$info" ]; then
+            record_type=$(dig +short "$sub.$domain" | awk 'NR==1{print $2}')
+            display_info "$sub" "$record_type" "$info"
+        else
+            echo "No record found for subdomain $sub"
+        fi
+    done
+}
+
+# Execute main function with provided arguments
+main "$1" "$2"
+
