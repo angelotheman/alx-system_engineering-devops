@@ -26,7 +26,7 @@ main() {
     for sub in "${subdomains[@]}"; do
         info=$(dig +short "$sub.$domain" | head -n1)
         if [ -n "$info" ]; then
-            record_type=$(dig +short "$sub.$domain" | awk 'NR==1{print $2}')
+            record_type=$(dig +short "$sub.$domain" | awk '{print $4}')
             display_info "$sub" "$record_type" "$info"
         else
             echo "No record found for subdomain $sub"
