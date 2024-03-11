@@ -1,39 +1,25 @@
 #!/usr/bin/env bash
-# Configure domains to point to webservers
+# Configuring and checking my DNS
 
+# Function to display subdomain information
 display_info() {
-    local subdomain="$1"
-    local domain="$2"
-
-    # Get DNS information for the subdomain
-    dns_info=$(dig +short "$subdomain.$domain")
-
-    if [ -z "$dns_info" ]; then
-        echo "No record found for subdomain $subdomain"
-    else
-        # Extract record type and destination
-        record_type=$(echo "$dns_info" | awk '{print $4}')
-        destination=$(echo "$dns_info" | awk '{print $1}')
-        echo "The subdomain $subdomain is a $record_type record and points to $destination"
-    fi
-}
-
-main() {
     local domain="$1"
     local subdomain="$2"
+    local ip=$(dig +short $subdomain.$domain)
+    local record_type=$(dig $subdomain.$domain | awk '/^;; ANSWER SECTION:$/ { getline; print $4 }')
 
-    # Default subdomains to check
-    local subdomains=("www" "lb-01" "web-01" "web-02")
-
-    # If subdomain provided, only check that subdomain
-    if [ -n "$subdomain" ]; then
-        display_info "$subdomain" "$domain"
-    else
-        # Display information for default subdomains
-        for sub in "${subdomains[@]}"; do
-            display_info "$sub" "$domain"
-        done
-    fi
+    echo "The subdomain $subdomain is a $record_type record and points to $ip"
 }
 
-main "$1" "$2"
+# Main script
+domain="$1"
+subdomain="$2"
+
+if [ -z "$subdomain" ]; then
+    display_info "$domain" www
+    display_info "$domain" lb-01
+    display_info "$domain" web-01
+    display_info "$domain" web-02
+else
+    display_info "$domain" "$subdomain"
+fi
