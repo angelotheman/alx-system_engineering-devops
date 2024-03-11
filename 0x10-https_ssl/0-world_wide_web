@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 # Configure domains to point to webservers
 
-# Function to display information about a subdomain
 display_info() {
     local subdomain="$1"
-    local record_type="$2"
-    local destination="$3"
-    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+    local domain="$2"
+
+    # Get DNS information for the subdomain
+    dns_info=$(dig +short "$subdomain.$domain")
+
+    if [ -z "$dns_info" ]; then
+        echo "No record found for subdomain $subdomain"
+    else
+        # Extract record type and destination
+        record_type=$(echo "$dns_info" | awk '{print $4}')
+        destination=$(echo "$dns_info" | awk '{print $1}')
+        echo "The subdomain $subdomain is a $record_type record and points to $destination"
+    fi
 }
 
-# Main function
 main() {
     local domain="$1"
     local subdomain="$2"
@@ -19,21 +27,13 @@ main() {
 
     # If subdomain provided, only check that subdomain
     if [ -n "$subdomain" ]; then
-        subdomains=("$subdomain")
+        display_info "$subdomain" "$domain"
+    else
+        # Display information for default subdomains
+        for sub in "${subdomains[@]}"; do
+            display_info "$sub" "$domain"
+        done
     fi
-
-    # Loop through subdomains and display information
-    for sub in "${subdomains[@]}"; do
-        info=$(dig +short "$sub.$domain" | head -n1)
-        if [ -n "$info" ]; then
-            record_type=$(dig +short "$sub.$domain" | awk '{print $4}')
-            display_info "$sub" "$record_type" "$info"
-        else
-            echo "No record found for subdomain $sub"
-        fi
-    done
 }
 
-# Execute main function with provided arguments
 main "$1" "$2"
-
