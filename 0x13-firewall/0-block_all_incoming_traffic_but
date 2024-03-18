@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Configure my ufw to block traffic and allow some ports
+
+# Enable the ufw
+sudo ufw enable
+
+# Allow  SSH
+sudo ufw allow 22/tcp
+
+# Allow HTTPS SSL
+sudo ufw allow 443/tcp
+
+# Allow HTTP
+sudo ufw allow 80/tcp
