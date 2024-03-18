@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
-# Before rules
+# Configure my ufw to block traffic and allow some ports
 
-sudo tee -a	/etc/ufw/before.rules > /dev/null <<EOF
+# Adding to Configure
+sudo tee -a etc/ufw/before.rules > /dev/null <<EOF
 *nat
 :PREROUTING ACCEPT [0:0]
 -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 COMMIT
 EOF
+
+# Enable the ufw
+sudo ufw enable
+
+# Allow  SSH
+sudo ufw allow 22/tcp
+
+# Allow HTTPS SSL
+sudo ufw allow 443/tcp
+
+# Allow HTTP
+sudo ufw allow 80/tcp
