@@ -10,4 +10,4 @@ frontend my_frontend
 backend my_backend
         balance roundrobin
         server 163713-web-01 54.237.9.122:80 check
-        server 163713-web-02 34.239.248.133:80 check
+        server 163713-web-02 100.26.250.59:80 check
