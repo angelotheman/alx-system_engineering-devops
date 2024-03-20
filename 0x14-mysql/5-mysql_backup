@@ -5,7 +5,7 @@ DATE=$(date +"%d-%m-%y")
 DUMP_FILE="backup.sql"
 
 # Create the sql dump
-mysqldump -u root -p "$1" --all-databases > "$DUMP_FILE"
+mysqldump -u root -p"$1" --all-databases > "$DUMP_FILE"
 
 # Compress to tar.gz
 tar -cvzf "$DATE.tar.gz" "$DUMP_FILE"
