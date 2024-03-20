@@ -4,11 +4,6 @@
 DATE=$(date +"%d-%m-%y")
 DUMP_FILE="backup.sql"
 
-if [ "$#" -ne 1 ]; then
-	echo "Usage $0 <root_password>"
-	exit 1
-fi
-
 # Create the sql dump
 mysqldump -u root -p "$1" --all-databases > "$DUMP_FILE"
 
