@@ -10,7 +10,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 # Create the sql dump
-mysqldump -u root -p "$1" --all-databases --single-transaction > "$DUMP_FILE"
+mysqldump -u root -p "$1" --all-databases --single-transaction --quick --lock-tables=false > "$DUMP_FILE"
 
 # Compress to tar.gz
 tar -czf "$DATE.tar.gz" "$DUMP_FILE"
