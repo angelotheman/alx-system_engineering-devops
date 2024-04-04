@@ -28,7 +28,7 @@ def fetch_user(employee_id):
     url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     response = requests.get(url)
     user_data = response.json()
-    name = user_data.get('name')
+    name = user_data.get('username')
     return name
 
 
@@ -43,7 +43,6 @@ if __name__ == '__main__':
         fieldnames = ['USER_ID', 'USERNAME',
                       'TASK_COMPLETED_STATUS', 'TASK_TITLE']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-        writer.writeheader()
 
         for task in fetch_todo_progress(employee_id):
             writer.writerow({
