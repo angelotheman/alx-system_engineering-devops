@@ -38,4 +38,4 @@ if __name__ == '__main__':
     print(f"Employee {user} is done with tasks({complete_task}/{total_tasks})")
     for task in fetch_todo_progress(employee_id):
         if task['completed']:
-            print(f"\t {task['title']}")
+            print(f"\t{task['title']}")
