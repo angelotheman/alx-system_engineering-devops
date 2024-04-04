@@ -3,8 +3,8 @@
 Gathering data from an API using the requests module
 Put this data into a csv file
 """
-import requests
 import csv
+import requests
 from sys import argv
 
 
