@@ -40,5 +40,7 @@ if __name__ == '__main__':
     user = fetch_user(employee_id)
     filename = f"{employee_id}.json"
 
+    data = {employee_id: tasks}
+
     with open(filename, 'w') as json_file:
-        json.dump({"USER_ID": tasks}, json_file)
+        json.dump(data, json_file)
