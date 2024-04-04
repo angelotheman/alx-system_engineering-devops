@@ -32,10 +32,10 @@ def fetch_user(employee_id):
 
 if __name__ == '__main__':
     employee_id = argv[1]
-    complete_task, total_tasks = display_tasks(employee_id)
+    complete_task, sum_tasks = display_tasks(employee_id)
     user = fetch_user(employee_id)
 
-    print(f"Employee {user} is done with tasks({complete_task}/{total_tasks})")
+    print(f"Employee {user} is done with tasks({complete_task}/{sum_tasks}):")
     for task in fetch_todo_progress(employee_id):
         if task['completed']:
-            print(f"\t{task['title']}")
+            print(f"\t {task['title']}")
