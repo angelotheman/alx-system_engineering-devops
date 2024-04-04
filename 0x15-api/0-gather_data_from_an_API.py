@@ -30,11 +30,6 @@ def fetch_user(employee_id):
     return name
 
 
-def display_progress(employee_id):
-    todos = fetch_todo_progress(employee_id)
-    completed_tasks = "hello"
-
-
 if __name__ == '__main__':
     employee_id = argv[1]
     complete_task, total_tasks = display_tasks(employee_id)
