@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Scripting for getting a page working
+
+server {
+    listen 80;
+    listen [::]:80;
+    add_header X-Served-By 163713-web-01;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location = /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;
+    }
+
+    error_page 404 /404.html;
+    location /404 {
+        root /var/www/html;
+        internal;
+    }
+
+    location /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+    location ~ /airbnb-dynamic/number_odd_or_even/(\d+)/$ {
+        proxy_pass http://127.0.0.1:5001/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
