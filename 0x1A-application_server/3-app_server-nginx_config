@@ -25,7 +25,7 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
     location ~ /airbnb-dynamic/number_odd_or_even/(?<n>\d+)/$ {
-        proxy_pass http://127.0.0.1:5001/$n;
+        proxy_pass http://127.0.0.1:5001/number_odd_or_even/$n;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
